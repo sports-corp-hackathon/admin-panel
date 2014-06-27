@@ -1,0 +1,36 @@
+{
+  "name": "HTMLStarterKitPro",
+  "version": "2.0.0",
+  "description": "grunt tasks for Durandal's HTML Starter Kit to ease testing/building",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "grunt jasmine:dev"
+  },
+  "keywords": [
+    "Durandal",
+    "HTML Starter Kit",
+    "Grunt",
+    "Jasmine"
+  ],
+  "author": "Rainer Wittmann",
+  "repository": {
+    "type": "https",
+    "url": "https://github.com/RainerAtSpirit/HTMLStarterKitPro.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-template-jasmine-requirejs": "~0.1.7",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-durandal": "~0.1.2",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "connect-livereload": "~0.3.0",
+    "grunt-open": "~0.2.0",
+    "mout": "~0.7.1"
+  }
+}
