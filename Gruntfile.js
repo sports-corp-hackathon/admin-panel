@@ -38,8 +38,8 @@ module.exports = function( grunt ) {
                 },
                 dev: {
                     options: {
-                        port: 80,
-                        hostname: 'localhost',
+                        port: 8999,
+                        hostname: '0.0.0.0',
                         middleware: function( connect ) {
                             return [lrSnippet, mountFolder(connect, '.')];
                         }
