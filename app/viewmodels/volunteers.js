@@ -1,4 +1,4 @@
-define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
+define(['plugins/http', 'durandal/app', 'knockout', 'viewModels/newVolunteer'], function(http, app, ko, NewVolunteer) {
     var ctor = function () {
         var self = this;
 
@@ -11,13 +11,26 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
         function getVolunteers() {
             http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'volunteer', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function(response) {
                 for(var i = 0; i < response.items.length; i++) {
-                    self.volunteers.push(new volunteerObj("ben@ben.com", "volunteer"));
+                    self.volunteers.unshift(new volunteerObj("ben@ben.com", "volunteer"));
                 }
             });
         }
 
         this.showHeader = true;
         this.title = 'Volunteers';
+
+        this.newVolunteer = function(volunteer) {
+            var vooolunteer = new NewVolunteer();
+            vooolunteer.volunteer = volunteer || new volunteerObj("","volunteer");
+            app.showDialog(vooolunteer).then(function(result) {
+                if(result) {
+                    console.dir(result);
+                    //http.post(app.url+'event/'+app.event.id+'/games/', JSON.stringify(result)).then(function(response) {
+                        self.volunteers.unshift(new volunteerObj(result.email, "volunteer"));
+                    //});
+                }
+            });
+        };
 
         getVolunteers();
     };

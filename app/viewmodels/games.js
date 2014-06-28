@@ -17,7 +17,8 @@ define(['plugins/http', 'durandal/app', 'knockout', 'viewmodels/newGame'], funct
             //         self.games.push(new gameObj("NAME", response.items[i].media.m, "HDLSFHSD", "sdfhjksdhfdjs"));
             //     }
             // });
-            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'breakfast', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function(response) {
+            http.get('https://public.opencpu.org/ocpu/library/').then(function(response) {
+                console.dir(response);
                 for(var i = 0; i < response.items.length; i++) {
                     self.games.unshift(new gameObj(app.event.id, "game name", response.items[i].media.m, "rules", "timed"));
                 }
