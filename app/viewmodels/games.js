@@ -2,22 +2,24 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
     var ctor = function () {
         var self = this;
 
-        function gameObj(name, image, rules, information) {
+        function gameObj(eventId, name, image, rules, scoreType) {
+            this.eventId = eventId;
             this.name = name; // str
             this.image = image; // url
             this.rules = rules; // str
-            this.information = information; // str
+            this.scoreType = scoreType; // str
         }
 
         self.games = ko.observableArray([]);
         function getGames() {
-            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'female', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function(response) {
+            http.get(app.url+'event/78f9075c-f81c-42fe-9d50-63e666b5450d/games').then(function(response) {
                 for(var i = 0; i < response.items.length; i++) {
                     self.games.push(new gameObj("NAME", response.items[i].media.m, "HDLSFHSD", "sdfhjksdhfdjs"));
                 }
             });
         }
 
+        this.showHeader = true;
         this.title = 'Games';
         this.header = app.event + ' / ' + this.title;
         this.description = 'Blah, Blah, Blah...games are great!';

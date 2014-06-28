@@ -1,6 +1,7 @@
-﻿define(['plugins/router', 'durandal/app'], function (router, app) {
+﻿define(['plugins/router', 'durandal/app', 'knockout'], function (router, app, ko) {
     return {
         email: app.email,
+        showHeader: false,
         router: router,
         search: function() {
             //It's really easy to show a message box.
@@ -9,8 +10,9 @@
         },
         activate: function () {
             router.map([
-                { route: '', title:'Login', moduleId: 'viewmodels/login', showNav: false },
-                { route: 'games', moduleId: 'viewmodels/games', nav: true, showNav: true }
+                { route: '', title:'Login', moduleId: 'viewmodels/login' },
+                { route: 'games', moduleId: 'viewmodels/games', nav: true },
+                { route: 'volunteers', moduleId: 'viewmodels/volunteers', nav:true }
             ]).buildNavigationModel();
             
             return router.activate();

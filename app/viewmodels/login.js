@@ -1,6 +1,18 @@
-define(function() {
+define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
     var ctor = function () {
-        this.title = 'Games';
+        this.title = 'Login';
+        this.verifyLogin = function(formElement) {
+            var email = ko.observable(formElement.email.value);
+            var password = ko.observable(formElement.password.value);
+            // http.post(app.url+'account/login', JSON.stringify({ "email": email, "password": password, "type": "admin" })).then(function(response) {
+            //     if(response) {
+            //         app.email = email;
+            //         window.location = "#games";
+            //     }
+            // });
+			app.email = email;
+            window.location = "#games";
+        };
     };
 
     //Note: This module exports a function. That means that you, the developer, can create multiple instances.

@@ -17,13 +17,13 @@
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (system, app, viewLocator) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'knockout'],  function (system, app, viewLocator, ko) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
 
     app.title = 'Durandal Starter Kit';
-
+    app.url = "http://isc.mhoc.co:8080/isc/";
     app.email = 'bwencke@purdue.edu';
     app.event = 'doing drugs';
 

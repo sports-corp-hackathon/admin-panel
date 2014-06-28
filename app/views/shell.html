@@ -1,4 +1,5 @@
 ﻿<div>
+    <!-- ko if: router.activeItem().showHeader -->
     <div class="navbar-default">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
@@ -19,6 +20,11 @@
         <span data-bind="text: email"></span>
       </div>
     </div>
+    <!-- /ko -->
+    <!-- ko ifnot: router.activeItem().showHeader -->
+    <div style="-webkit-filter: blur(3px); background-size:cover; z-index:-1; top:0; bottom:0; left:0; right:0; position:absolute;
+background-image:url('http://www.wallsave.com/wallpapers/2560x1600/juventus/952413/juventus-soccer-hd-high-definition-mobile-952413.jpg')"></div>
+    <!-- /ko -->
     
     <div class="container-fluid page-host" data-bind="router: { transition:'entrance', cacheViews:true }"></div>
 </div>
