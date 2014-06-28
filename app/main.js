@@ -6,7 +6,8 @@
         'transitions' : '../lib/durandal/js/transitions',
         'knockout': '../lib/knockout/knockout-2.3.0',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'jquery': '../lib/jquery/jquery-1.9.1'
+        'jquery': '../lib/jquery/jquery-1.9.1',
+        'wookmark': '../lib/wookmark/wookmark'
     },
     shim: {
         'bootstrap': {
@@ -22,6 +23,9 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (s
     //>>excludeEnd("build");
 
     app.title = 'Durandal Starter Kit';
+
+    app.email = 'bwencke@purdue.edu';
+    app.event = 'doing drugs';
 
     app.configurePlugins({
         router:true,

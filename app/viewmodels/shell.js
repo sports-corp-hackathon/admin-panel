@@ -1,5 +1,6 @@
 ﻿define(['plugins/router', 'durandal/app'], function (router, app) {
     return {
+        email: app.email,
         router: router,
         search: function() {
             //It's really easy to show a message box.
@@ -8,8 +9,8 @@
         },
         activate: function () {
             router.map([
-                { route: '', title:'Welcome', moduleId: 'viewmodels/welcome', nav: true },
-                { route: 'flickr', moduleId: 'viewmodels/flickr', nav: true }
+                { route: '', title:'Login', moduleId: 'viewmodels/login', showNav: false },
+                { route: 'games', moduleId: 'viewmodels/games', nav: true, showNav: true }
             ]).buildNavigationModel();
             
             return router.activate();
