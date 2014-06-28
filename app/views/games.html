@@ -1,17 +1,15 @@
 <section>
-    <h2 data-bind="text: header"></h2>
-    <p data-bind="html:description"></p>
-    <div class="row">
+    <h2 data-bind="text: title"></h2>
+    <button class="btn btn-primary" style="float:right; margin-top:-48px;" data-bind="click: newItem">Add Game</button>
+    <div class="row" style="margin-top:20px;">
         <!-- ko foreach: games -->
             <div class="col-sm-4">
       
-                <div class="panel panel-default">
-                    <div class="panel-thumbnail"><img src="http://placesheen.com/450/300" data-bind="
-                    attr: {
-                        src: $data.image
-                    }" class="img-responsive"
-                    style="
-                    width:100%"></div>
+                <div class="panel panel-default" data-bind="click: $parent.newItem", style="cursor:pointer;">
+                    <div class="panel-thumbnail" data-bind="
+                        style: {
+                            background: 'url(\''+$data.image+'\')'
+                        }" style="height:200px; background-size:cover"></div>
                     <div class="panel-body">
                     <p class="lead" data-bind="text: $data.name"></p>
                     <p>50 Participants, 25 Volunteers</p>

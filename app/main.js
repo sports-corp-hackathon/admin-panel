@@ -22,10 +22,15 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'knockout'], 
     system.debug(true);
     //>>excludeEnd("build");
 
-    app.title = 'Durandal Starter Kit';
+    var event = function(id, name) {
+        this.id = id;
+        this.name = name;
+    };
+
+    app.title = "Indy Sports Corp";
     app.url = "http://isc.mhoc.co:8080/isc/";
-    app.email = 'bwencke@purdue.edu';
-    app.event = 'doing drugs';
+    app.email = '';
+    app.event = new event("78f9075c-f81c-42fe-9d50-63e666b5450d", "Corporate Challenge");
 
     app.configurePlugins({
         router:true,

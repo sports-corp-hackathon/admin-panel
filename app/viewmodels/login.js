@@ -1,5 +1,8 @@
 define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
     var ctor = function () {
+    	if(app.email) {
+    		window.location = "#games";
+    	}
         this.title = 'Login';
         this.verifyLogin = function(formElement) {
             var email = ko.observable(formElement.email.value);

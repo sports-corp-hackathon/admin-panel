@@ -20,7 +20,8 @@ module.exports = function( grunt ) {
             'durandal': '../lib/durandal/js',
             'plugins': '../lib/durandal/js/plugins',
             'transitions': '../lib/durandal/js/transitions',
-            'wookmark': '../lib/wookmark/wookmark'
+            'wookmark': '../lib/wookmark/wookmark',
+            'bootstrap': '../lib/bootstrap/js/bootstrap'
         }
     };
 

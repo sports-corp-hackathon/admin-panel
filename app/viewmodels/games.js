@@ -1,4 +1,4 @@
-define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
+define(['plugins/http', 'durandal/app', 'knockout', 'viewmodels/newGame'], function(http, app, ko, NewGame) {
     var ctor = function () {
         var self = this;
 
@@ -12,17 +12,21 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
 
         self.games = ko.observableArray([]);
         function getGames() {
-            http.get(app.url+'event/78f9075c-f81c-42fe-9d50-63e666b5450d/games').then(function(response) {
+            // http.get(app.url+'event/78f9075c-f81c-42fe-9d50-63e666b5450d/games').then(function(response) {
+            //     for(var i = 0; i < response.items.length; i++) {
+            //         self.games.push(new gameObj("NAME", response.items[i].media.m, "HDLSFHSD", "sdfhjksdhfdjs"));
+            //     }
+            // });
+            http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne', { tags: 'breakfast', tagmode: 'any', format: 'json' }, 'jsoncallback').then(function(response) {
                 for(var i = 0; i < response.items.length; i++) {
-                    self.games.push(new gameObj("NAME", response.items[i].media.m, "HDLSFHSD", "sdfhjksdhfdjs"));
+                    self.games.unshift(new gameObj(app.event.id, "game name", response.items[i].media.m, "rules", "timed"));
                 }
             });
         }
 
         this.showHeader = true;
         this.title = 'Games';
-        this.header = app.event + ' / ' + this.title;
-        this.description = 'Blah, Blah, Blah...games are great!';
+        this.addingGame = ko.observable(false);
 
         this.imgSrc = function() {
             var randomNum1 = Math.round((Math.random()*100+300)/10)*10;
@@ -30,13 +34,20 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
             return "http://placesheen.com/"+randomNum1+"/"+randomNum2;
         };
 
+        this.newItem = function(game) {
+            var gaaame = new NewGame();
+            gaaame.game = game || new gameObj(app.event.id, "", "", "", "timed");
+            app.showDialog(gaaame).then(function(result) {
+                if(result) {
+                    console.dir(result);
+                    //http.post(app.url+'event/'+app.event.id+'/games/', JSON.stringify(result)).then(function(response) {
+                        self.games.unshift(new gameObj(result.eventId, result.name, "", result.rules, result.scoreType));
+                    //});
+                }
+            });
+        };
         getGames();
     };
-
-    //Note: This module exports a function. That means that you, the developer, can create multiple instances.
-    //This pattern is also recognized by Durandal so that it can create instances on demand.
-    //If you wish to create a singleton, you should export an object instead of a function.
-    //See the "flickr" module for an example of object export.
 
     return ctor;
 });
